@@ -7,10 +7,55 @@ body {
     margin: 0;
     background-color: rgba(8, 163, 163, 0.801);
 }
+#input-form, #game-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-top: 10px;
+    color: #666;
+}
+
+input {
+    padding: 8px;
+    margin: 5px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
 
 .container {
     text-align: center;
 }
+
 
 .board {
     display: grid;
@@ -33,9 +78,76 @@ body {
     background-color: #08fff3;
 }
 
-.result {
+.result, #turn-display {
     margin-top: 20px;
     font-size: 1.5em;
     font-weight: bold;
     
 }
+/* body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+} */
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+.cell:hover {
+    background-color: #ccc;
+}
+
+/* #result {
+    margin-top: 20px;
+    font-size: 18px;
+} */
+
+#turn-display {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+#end-game-message {
+    display: none;
+    margin-top: 20px;
+}
+
+#winner-message {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
