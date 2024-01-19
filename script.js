@@ -8,8 +8,10 @@ const winnerMessage = document.getElementById('winner-message');
 const currentPlayerDisplay = document.getElementById('current-player');
 
 let currentPlayer = 'X';
-let gameBoard = ['', '', '', '', '', '', '', '', ''];
-let gameActive = true;
+// let gameBoard = ['', '', '', '', '', '', '', '', ''];
+// let gameActive = true;
+let gameBoard = Array.from({ length: 6 * 3 }, () => '');
+let gameActive = false; // Updated to start the game only after player names are entered
 
 function startGame() {
     const player1Name = document.getElementById('player1').value;
@@ -31,6 +33,7 @@ function startGame() {
 }
 
 function createBoard() {
+    board.innerHTML = ''; // Clear existing board
     for (let i = 0; i < 9; i++) {
         const cell = document.createElement('div');
         cell.classList.add('cell');
@@ -77,7 +80,8 @@ function endGame(message) {
 }
 
 function resetGame() {
-    gameBoard = ['', '', '', '', '', '', '', '', ''];
+    gameBoard = Array.from({ length: 6 * 3 }, () => '');
+    // gameBoard = ['', '', '', '', '', '', '', '', ''];
     currentPlayer = 'X';
     result.textContent = '';
     gameActive = true;
@@ -89,6 +93,18 @@ function resetGame() {
     cells.forEach(cell => {
         cell.textContent = '';
     });
+    
+     // Auto-hide the previous restart button
+     const previousRestartButton = document.querySelector('#end-game-message button');
+     if (previousRestartButton) {
+         previousRestartButton.style.display = 'none';
+     }
+ 
+     // Show the new restart button
+     const newRestartButton = document.getElementById('new-restart-button');
+     if (newRestartButton) {
+         newRestartButton.style.display = 'inline-block';
+     }
 }
 
 // Initialize the game
