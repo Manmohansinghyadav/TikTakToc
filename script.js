@@ -6,16 +6,17 @@ const turnDisplay = document.getElementById('turn-display');
 const endGameMessage = document.getElementById('end-game-message');
 const winnerMessage = document.getElementById('winner-message');
 const currentPlayerDisplay = document.getElementById('current-player');
+const newGameButton = document.getElementById('new-game-button');
 
+let player1Name = '';
+let player2Name = '';
 let currentPlayer = 'X';
-// let gameBoard = ['', '', '', '', '', '', '', '', ''];
-// let gameActive = true;
 let gameBoard = Array.from({ length: 6 * 3 }, () => '');
-let gameActive = false; // Updated to start the game only after player names are entered
+let gameActive = false;
 
 function startGame() {
-    const player1Name = document.getElementById('player1').value;
-    const player2Name = document.getElementById('player2').value;
+    player1Name = document.getElementById('player1').value;
+    player2Name = document.getElementById('player2').value;
 
     if (!player1Name || !player2Name) {
         alert('Please enter names for both players.');
@@ -28,12 +29,12 @@ function startGame() {
     inputForm.style.display = 'none';
     gameContainer.style.display = 'block';
 
-    currentPlayerDisplay.textContent = currentPlayer;
+    currentPlayerDisplay.textContent = `${player1Name} (${currentPlayer})`;
     createBoard();
 }
 
 function createBoard() {
-    board.innerHTML = ''; // Clear existing board
+    board.innerHTML = '';
     for (let i = 0; i < 9; i++) {
         const cell = document.createElement('div');
         cell.classList.add('cell');
@@ -54,7 +55,7 @@ function handleCellClick(event) {
             endGame('It\'s a tie!');
         } else {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            turnDisplay.textContent = currentPlayer;
+            turnDisplay.textContent = `${player2Name} (${currentPlayer})`;
         }
     }
 }
@@ -75,17 +76,22 @@ function checkWinner() {
 function endGame(message) {
     gameActive = false;
     result.textContent = message;
-    endGameMessage.style.display = 'block';
-    winnerMessage.textContent = message;
+    endGameMessage.style.display = 'flex';
+    
+    const winningPlayer = currentPlayer === 'X' ? player1Name : player2Name;
+    
+    winnerMessage.textContent = `${winningPlayer} wins!`;
+
+    // Show the new restart button
+    newGameButton.style.display = 'block';
 }
 
 function resetGame() {
     gameBoard = Array.from({ length: 6 * 3 }, () => '');
-    // gameBoard = ['', '', '', '', '', '', '', '', ''];
     currentPlayer = 'X';
     result.textContent = '';
     gameActive = true;
-    turnDisplay.textContent = currentPlayer;
+    turnDisplay.textContent = `${player1Name} (${currentPlayer})`;
     endGameMessage.style.display = 'none';
 
     // Clear the board
@@ -93,18 +99,20 @@ function resetGame() {
     cells.forEach(cell => {
         cell.textContent = '';
     });
-    
-     // Auto-hide the previous restart button
-     const previousRestartButton = document.querySelector('#end-game-message button');
-     if (previousRestartButton) {
-         previousRestartButton.style.display = 'none';
-     }
- 
-     // Show the new restart button
-     const newRestartButton = document.getElementById('new-restart-button');
-     if (newRestartButton) {
-         newRestartButton.style.display = 'inline-block';
-     }
+
+    // Auto-hide the previous restart button
+    newGameButton.style.display = 'none';
+}
+
+function newGame() {
+    inputForm.style.display = 'block';
+    gameContainer.style.display = 'none';
+    endGameMessage.style.display = 'none';
+    document.getElementById('player1').value = '';
+    document.getElementById('player2').value = '';
+    currentPlayerDisplay.textContent = 'X';
+    gameActive = false;
+    createBoard();
 }
 
 // Initialize the game
