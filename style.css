@@ -5,7 +5,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: rgba(8, 163, 163, 0.801);
+    background: linear-gradient(to right, #00bcd4, #3f51b5);
 }
 
 #input-form, #game-container {
@@ -128,25 +128,38 @@ button:hover {
 }
 
 #end-game-message {
-    display: none;
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #033679;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 
 #winner-message {
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 10px;
+    color: #fff;
 }
 
-button {
+#new-game-button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: #3f51b5;
     color: white;
     border: none;
     border-radius: 5px;
+    margin-top: 15px;
 }
 
-button:hover {
-    background-color: #45a049;
+#new-game-button:hover {
+    background-color: #303f9f;
 }
