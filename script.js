@@ -11,7 +11,7 @@ const newGameButton = document.getElementById('new-game-button');
 let player1Name = '';
 let player2Name = '';
 let currentPlayer = 'X';
-let gameBoard = Array.from({ length: 6 * 3 }, () => '');
+let gameBoard = Array(9).fill('');
 let gameActive = false;
 
 function startGame() {
@@ -55,7 +55,7 @@ function handleCellClick(event) {
             endGame('It\'s a tie!');
         } else {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            turnDisplay.textContent = `${player2Name} (${currentPlayer})`;
+            turnDisplay.textContent = `${currentPlayer === 'X' ? player1Name : player2Name} (${currentPlayer})`;
         }
     }
 }
@@ -82,38 +82,23 @@ function endGame(message) {
     
     winnerMessage.textContent = `${winningPlayer} wins!`;
 
-    // Show the new restart button
     newGameButton.style.display = 'block';
 }
 
 function resetGame() {
-    gameBoard = Array.from({ length: 6 * 3 }, () => '');
+    gameBoard = Array(9).fill('');
     currentPlayer = 'X';
     result.textContent = '';
     gameActive = true;
     turnDisplay.textContent = `${player1Name} (${currentPlayer})`;
     endGameMessage.style.display = 'none';
-
-    // Clear the board
-    const cells = document.querySelectorAll('.cell');
-    cells.forEach(cell => {
-        cell.textContent = '';
-    });
-
-    // Auto-hide the previous restart button
-    newGameButton.style.display = 'none';
-}
-
-function newGame() {
-    inputForm.style.display = 'block';
-    gameContainer.style.display = 'none';
-    endGameMessage.style.display = 'none';
-    document.getElementById('player1').value = '';
-    document.getElementById('player2').value = '';
-    currentPlayerDisplay.textContent = 'X';
-    gameActive = false;
     createBoard();
 }
 
-// Initialize the game
-createBoard();
+function newGame() {
+    resetGame();
+    inputForm.style.display = 'block';
+    gameContainer.style.display = 'none';
+    document.getElementById('player1').value = '';
+    document.getElementById('player2').value = '';
+}
