@@ -16,16 +16,15 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: fixed;
-    left: 50%; /* Center horizontally on larger screens */
-    transform: translateX(-50%); /* Center horizontally on larger screens */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-/* Media query for smaller screens */
 @media screen and (max-width: 600px) {
     #input-form, #game-container {
-        width: 80%; /* Adjust width for smaller screens */
-        left: 50%; /* Center horizontally on smaller screens */
-        transform: translateX(-50%); /* Center horizontally on smaller screens */
+        width: 80%;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 
@@ -67,13 +66,13 @@ button:hover {
 
 .container {
     text-align: center;
-    /* position: absolute; */
 }
 
 .board {
     display: grid;
     grid-template-columns: repeat(3, 100px);
     gap: 5px;
+    margin-top: 20px;
 }
 
 .cell {
@@ -85,46 +84,18 @@ button:hover {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-}
-
-.cell:hover {
-    background-color: #08fff3;
-}
-
-.result, #turn-display {
-    margin-top: 20px;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-#board {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.cell {
-    width: 100px;
-    height: 100px;
-    background-color: #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    cursor: pointer;
-    border: 1px solid #bbb;
     border-radius: 5px;
+    background-color: #ddd;
 }
 
 .cell:hover {
     background-color: #ccc;
 }
 
-#turn-display {
-    margin-top: 10px;
-    font-size: 16px;
+.result, #turn-display {
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 #end-game-message {
@@ -141,7 +112,6 @@ button:hover {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 
 #winner-message {
     font-size: 24px;
@@ -162,4 +132,16 @@ button:hover {
 
 #new-game-button:hover {
     background-color: #303f9f;
+}
+
+@media screen and (max-width: 600px) {
+    .board {
+        grid-template-columns: repeat(3, 80px);
+        grid-template-rows: repeat(3, 80px);
+    }
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 20px;
+    }
 }
